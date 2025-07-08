@@ -1,19 +1,36 @@
-import React, { ReactComponentElement } from 'react';
+import React from 'react';
 
 import './header.sass';
 import { Logo } from '../Logo/Logo';
+
+type ItemNavType = {
+  label: string;
+  arrows?: boolean;
+};
 
 interface HeaderProps {
   /**
    * Навигация
    */
-  nav?: ReactComponentElement<undefined>;
+  nav?: ItemNavType[];
 }
 
 export function Header({ ...props }: HeaderProps) {
+  const nav =
+    props.nav && props.nav.length ? (
+      <div className="nav">
+        {props.nav.map((item: ItemNavType, index: number) => (
+          <li key={index}>
+            {item.arrows}
+            {item.label}
+          </li>
+        ))}
+      </div>
+    ) : null;
+
   return (
     <div className="header">
-      <div className="nav">{props.nav}</div>
+      {nav}
       <div className="logo">
         <Logo></Logo>
       </div>

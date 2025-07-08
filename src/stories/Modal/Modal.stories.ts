@@ -16,5 +16,6 @@ export default meta;
 export const ModalVisible = {
   args: {
     visible: true,
+    onClose: () => console.log('clickButton'),
   },
 };

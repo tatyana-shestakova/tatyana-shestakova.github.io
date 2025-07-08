@@ -6,7 +6,7 @@ interface ModalProps {
   /**
    * Видимость модального окна
    */
-  visible?: boolean;
+  visible: boolean;
 
   /**
    * Содержимое модального окна
@@ -16,7 +16,7 @@ interface ModalProps {
   /**
    * Закрыть модальное окно
    */
-  onClose?: () => void;
+  onClose: () => void;
 }
 
 export function Modal({ visible = true, onClose, ...props }: ModalProps) {

@@ -8,22 +8,22 @@ interface BasketCardProps {
   /**
    * Изображение товара
    */
-  image?: string;
+  image: string;
 
   /**
    * Цена
    */
-  price?: number;
+  price: number;
 
   /**
    * Название товара
    */
-  title?: string;
+  title: string;
 
   /**
    * Количество товара
    */
-  count?: number;
+  count: number;
 }
 
 export function BasketCard({ image = '', price, title, count }: BasketCardProps) {
@@ -33,7 +33,11 @@ export function BasketCard({ image = '', price, title, count }: BasketCardProps)
       <div className="card-title">{title}</div>
       <div className="card-price">{price}₽</div>
       <div className="card-price">{count}</div>
-      <ButtonIcon mode="teal" icon="https://img.icons8.com/?size=100&id=99950&format=png&color=FFFFFF"></ButtonIcon>
+      <ButtonIcon
+        mode="teal"
+        icon="https://img.icons8.com/?size=100&id=99950&format=png&color=FFFFFF"
+        onClick={() => console.log('clickIcon')}
+      ></ButtonIcon>
     </div>
   );
 }

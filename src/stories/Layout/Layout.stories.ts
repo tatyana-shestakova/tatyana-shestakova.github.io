@@ -22,5 +22,7 @@ export const LayoutMint = {
 export const LayoutOrange = {
   args: {
     colorSchema: 'orange',
+    body: `<div></div>`,
+    footer: `<div></div>`,
   },
 };

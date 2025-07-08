@@ -11,12 +11,12 @@ interface ButtonIconProps {
   /**
    * Иконка
    */
-  icon?: string;
+  icon: string;
 
   /**
    * Клик на кнопку
    */
-  onClick?: () => void;
+  onClick: () => void;
 }
 
 export function ButtonIcon({ mode = 'mint', icon = '', onClick }: ButtonIconProps) {

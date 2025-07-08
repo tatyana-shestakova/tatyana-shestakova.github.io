@@ -3,22 +3,23 @@ import React, { ReactComponentElement } from 'react';
 import './layout.sass';
 
 import { Header } from '../Header/Header';
+import { ButtonModeType } from 'src/stories/Button/Button';
 
 interface LayoutProps {
   /**
    * Цветовая схема
    */
-  colorSchema: 'mint' | 'orange';
+  colorSchema: Omit<ButtonModeType, 'teal'>;
 
   /**
    * Body
    */
-  body?: ReactComponentElement<undefined>;
+  body: ReactComponentElement<undefined>;
 
   /**
    * Footer
    */
-  footer?: ReactComponentElement<undefined>;
+  footer: ReactComponentElement<undefined>;
 }
 
 export function Layout({ colorSchema, ...props }: LayoutProps) {

@@ -8,17 +8,17 @@ interface FullCardProps {
   /**
    * Изображение товара
    */
-  image?: string;
+  image: string;
 
   /**
    * Цена
    */
-  price?: number;
+  price: number;
 
   /**
    * Название товара
    */
-  title?: string;
+  title: string;
 
   /**
    * Описание товара
@@ -28,7 +28,7 @@ interface FullCardProps {
   /**
    * Категория
    */
-  category?: string;
+  category: string;
 }
 
 export function FullCard({ image = '', price, title, description, category }: FullCardProps) {

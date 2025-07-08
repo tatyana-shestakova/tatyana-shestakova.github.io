@@ -2,11 +2,13 @@ import React from 'react';
 
 import './button.sass';
 
+export type ButtonModeType = 'mint' | 'orange' | 'teal';
+
 interface ButtonProps {
   /**
    * Цвет кнопки
    */
-  mode: 'mint' | 'orange' | 'teal';
+  mode: ButtonModeType;
 
   /**
    * Счетчик
@@ -29,14 +31,7 @@ interface ButtonProps {
   onIncrement?: () => void;
 }
 
-export function Button({
-  mode = 'mint',
-  label = 'В корзину',
-  counter,
-  onDecrease,
-  onIncrement,
-  ...props
-}: ButtonProps) {
+export function Button({ mode = 'mint', label = 'В корзину', counter, onDecrease, onIncrement }: ButtonProps) {
   return (
     <div className={['button', mode].join(' ')}>
       <div className={counter ? 'hidden' : 'showed'}>{label}</div>

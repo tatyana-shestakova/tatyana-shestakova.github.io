@@ -1,0 +1,88 @@
+.button
+  font-family: Arial, sans-serif
+  border: 0
+  border-radius: 8px
+  cursor: pointer
+  color: white
+  display: flex
+  justify-content: center
+  align-items: center
+  line-height: 1
+  width: 200px
+  padding: 10px
+  height: 30px
+
+  &.mint
+    background-color: #94d2bd
+
+  &.orange
+    background-color: #ca6702
+
+  &.teal
+    background-color: #005f73
+
+.showed
+  display: block
+
+.hidden
+  display: none
+
+.buttons
+  display: grid
+  gap: 10px
+  grid-template-columns: 1fr 40px 1fr
+  justify-content: space-between
+  align-items: center
+  width: 100%
+
+.controls
+  font-family: Arial, sans-serif
+  font-weight: 700
+  color: white
+  cursor: pointer
+  display: block
+  line-height: 1
+  background-color: transparent
+  border: 1px solid white
+  align-items: center
+  border-radius: 4px
+  width: 25px
+  height: 25px
+
+.counter
+  border: 1px solid white
+  display: block
+  font-family: Arial, sans-serif
+  font-weight: 700
+  color: white
+  background-color: transparent
+  border-radius: 4px
+  padding: 0 5px
+  text-align: center
+  width: 30px
+  height: 25px
+
+  &:focus
+    border: 2px solid white
+
+.button-icon
+  width: 30px
+  height: 30px
+  border-radius: 4px
+  display: flex
+  justify-content: center
+  align-items: center
+  cursor: pointer
+
+  & .icon
+    width: 20px
+    height: 20px
+
+  &.mint
+    background-color: #94d2bd
+
+  &.orange
+    background-color: #ca6702
+
+  &.teal
+    background-color: #005f73

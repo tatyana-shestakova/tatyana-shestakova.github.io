@@ -4,7 +4,24 @@ import './button.sass';
 
 export type ButtonModeType = 'mint' | 'orange' | 'teal';
 
-interface ButtonProps {
+export interface ButtonProps {
+  /**
+   * Цвет кнопки
+   */
+  mode: ButtonModeType;
+
+  /**
+   * Заголовок
+   */
+  label: string;
+
+  /**
+   * Событие по клику на кнопку
+   */
+  onClick: () => void;
+}
+
+interface ButtonBasketProps extends ButtonProps {
   /**
    * Цвет кнопки
    */
@@ -31,7 +48,23 @@ interface ButtonProps {
   onIncrement: () => void;
 }
 
-export function Button({ mode = 'mint', label = 'В корзину', counter, onDecrease, onIncrement }: ButtonProps) {
+export function Button({ mode = 'mint', label = 'Кнопка', onClick }: ButtonProps) {
+  return (
+    <div>
+      <button type="button" className={['button', mode].join(' ')} onClick={onClick}>
+        {label}
+      </button>
+    </div>
+  );
+}
+
+export function ButtonBasket({
+  mode = 'mint',
+  label = 'В корзину',
+  counter,
+  onDecrease,
+  onIncrement,
+}: ButtonBasketProps) {
   return (
     <div className={['button', mode].join(' ')}>
       <div className={counter ? 'hidden' : 'showed'}>{label}</div>

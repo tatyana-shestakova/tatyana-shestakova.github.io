@@ -1,10 +1,10 @@
 import type { Meta } from '@storybook/react';
 
-import { Header } from './Header';
+import { SwitchLanguage } from './Header';
 
-const meta: Meta<typeof Header> = {
+const meta: Meta<typeof SwitchLanguage> = {
   title: 'Example/Header',
-  component: Header,
+  component: SwitchLanguage,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
@@ -13,8 +13,6 @@ const meta: Meta<typeof Header> = {
 
 export default meta;
 
-export const HeaderExample = {
-  args: {
-    nav: '',
-  },
+export const HeaderSwitchExample = {
+  args: {},
 };

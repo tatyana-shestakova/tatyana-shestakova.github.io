@@ -2,9 +2,13 @@ import React from 'react';
 
 import './logo.sass';
 
-export function Logo() {
+interface LogoProps {
+  theme?: string;
+}
+
+export function Logo({ theme }: LogoProps) {
   return (
-    <div className="default-logo">
+    <div className={['default-logo', theme].join(' ')}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         id="Layer_1"

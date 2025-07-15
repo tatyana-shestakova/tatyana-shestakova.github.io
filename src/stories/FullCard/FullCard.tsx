@@ -29,9 +29,14 @@ interface FullCardProps {
    * Категория
    */
   category: string;
+
+  /**
+   * Клик на кнопку
+   */
+  onClick: () => void;
 }
 
-export function FullCard({ image = '', price, title, description, category }: FullCardProps) {
+export function FullCard({ image = '', price, title, description, category, onClick }: FullCardProps) {
   return (
     <div className="full-card">
       <img className="card-image" src={image} alt=""></img>
@@ -43,7 +48,7 @@ export function FullCard({ image = '', price, title, description, category }: Fu
         </div>
         <div>
           <div className="card-price">{price} ₽</div>
-          <Button mode="orange" label="В корзину"></Button>
+          <Button mode="orange" label="В корзину" onClick={onClick}></Button>
         </div>
       </div>
     </div>

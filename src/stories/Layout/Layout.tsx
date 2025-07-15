@@ -1,31 +1,31 @@
-import React, { ReactComponentElement } from 'react';
+import React from 'react';
 
 import './layout.sass';
 
-import { Header } from '../Header/Header';
+import { SwitchLanguage } from '../Header/Header';
 import { ButtonModeType } from 'src/stories/Button/Button';
 
 interface LayoutProps {
   /**
    * Цветовая схема
    */
-  colorSchema: Omit<ButtonModeType, 'teal'>;
+  colorSchema?: Omit<ButtonModeType, 'teal'>;
 
   /**
    * Body
    */
-  body: ReactComponentElement<undefined>;
+  body?: React.ReactNode;
 
   /**
    * Footer
    */
-  footer: ReactComponentElement<undefined>;
+  footer?: React.ReactNode;
 }
 
 export function Layout({ colorSchema, ...props }: LayoutProps) {
   return (
     <div className={[colorSchema, 'layout'].join(' ')}>
-      <Header></Header> {props.body} {props.footer}
+      <SwitchLanguage /> {props.body} {props.footer}
     </div>
   );
 }

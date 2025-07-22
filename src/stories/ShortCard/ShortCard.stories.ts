@@ -19,5 +19,6 @@ export const ShortCardExample = {
     price: '2222',
     title: 'Товар 1',
     description: 'Описание товара, которое не вмещается',
+    id: '1',
   },
 };

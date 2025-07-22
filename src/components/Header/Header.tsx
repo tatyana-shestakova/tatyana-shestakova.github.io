@@ -16,6 +16,11 @@ interface HeaderProps {
    * Навигация
    */
   nav?: ItemNavType[];
+
+  /**
+   * Содержимое модального окна
+   */
+  children?: React.ReactNode;
 }
 
 export function Header({ ...props }: HeaderProps) {
@@ -44,6 +49,7 @@ export function Header({ ...props }: HeaderProps) {
       <div className="lang-switcher">
         <Toggle label={i18n[language].changeLang} onClick={() => setLanguage(language === 'en' ? 'ru' : 'en')} />
         <Toggle label={i18n[language].changeTheme} onClick={() => toggleTheme()} />
+        {props.children}
       </div>
     </div>
   );

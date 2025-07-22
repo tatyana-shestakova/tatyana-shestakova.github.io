@@ -3,7 +3,7 @@ import React from 'react';
 import './layout.sass';
 
 import { Header } from '../Header/Header';
-import { ModeType } from 'src/stories/Button/Button';
+import { ModeType } from 'src/components/Button/Button';
 
 interface LayoutProps {
   /**

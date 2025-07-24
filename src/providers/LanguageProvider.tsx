@@ -30,11 +30,11 @@ export const I18nContext = createContext<I18nContextType>({
   i18n: i18n,
 });
 
-interface I18nProviderProps {
+interface LanguageProviderProps {
   children: ReactNode;
 }
 
-export const I18nProvider = ({ children }: I18nProviderProps) => {
+export const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const [language, setLanguage] = useState<Language>((navigator.language.slice(0, 2) as Language) || 'en');
 
   return <I18nContext.Provider value={{ language, setLanguage, i18n }}>{children}</I18nContext.Provider>;

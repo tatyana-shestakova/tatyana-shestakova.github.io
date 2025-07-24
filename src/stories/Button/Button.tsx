@@ -2,14 +2,13 @@ import React from 'react';
 
 import './button.sass';
 
-export type ButtonModeType = 'mint' | 'orange' | 'teal';
+export type ModeType = 'mint' | 'orange' | 'teal';
 
 export interface ButtonProps {
   /**
    * Цвет кнопки
    */
-  mode: ButtonModeType;
-
+  mode: ModeType;
   /**
    * Заголовок
    */
@@ -25,7 +24,7 @@ interface ButtonBasketProps extends ButtonProps {
   /**
    * Цвет кнопки
    */
-  mode: ButtonModeType;
+  mode: ModeType;
 
   /**
    * Счетчик
@@ -50,11 +49,9 @@ interface ButtonBasketProps extends ButtonProps {
 
 export function Button({ mode = 'mint', label = 'Кнопка', onClick }: ButtonProps) {
   return (
-    <div>
-      <button type="button" className={['button', mode].join(' ')} onClick={onClick}>
-        {label}
-      </button>
-    </div>
+    <button type="button" className={['button', mode].join(' ')} onClick={onClick}>
+      {label}
+    </button>
   );
 }
 

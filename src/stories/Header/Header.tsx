@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import './header.sass';
 import { Logo } from '../Logo/Logo';
 import { Toggle } from '../Toggle/Toggle';
-import { ThemeContext } from '../../app/App';
-import { I18nContext, I18nProvider } from '../../app/i18n-context';
+import { I18nContext } from '../../providers/LanguageProvider';
+import { useTheme } from '../../providers/ThemeProvider';
 
 type ItemNavType = {
   label: string;
@@ -19,7 +19,9 @@ interface HeaderProps {
 }
 
 export function Header({ ...props }: HeaderProps) {
-  const theme = useContext(ThemeContext);
+  const { language, i18n, setLanguage } = useContext(I18nContext);
+
+  const { theme, toggleTheme } = useTheme();
 
   const nav =
     props.nav && props.nav.length ? (
@@ -39,32 +41,10 @@ export function Header({ ...props }: HeaderProps) {
       <div className="logo">
         <Logo theme={theme}></Logo>
       </div>
-    </div>
-  );
-}
-
-export function SwitchTheme() {
-  const [mode, setTheme] = useState('orange');
-  const { language, i18n, setLanguage } = useContext(I18nContext);
-
-  return (
-    <div>
       <div className="lang-switcher">
         <Toggle label={i18n[language].changeLang} onClick={() => setLanguage(language === 'en' ? 'ru' : 'en')} />
-        <Toggle label={i18n[language].changeTheme} onClick={() => setTheme(mode === 'orange' ? 'mint' : 'orange')} />
+        <Toggle label={i18n[language].changeTheme} onClick={() => toggleTheme()} />
       </div>
-
-      <ThemeContext.Provider value={mode}>
-        <Header />
-      </ThemeContext.Provider>
     </div>
-  );
-}
-
-export function SwitchLanguage() {
-  return (
-    <I18nProvider>
-      <SwitchTheme />
-    </I18nProvider>
   );
 }

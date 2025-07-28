@@ -68,20 +68,7 @@ module.exports = (_, args) => {
         },
         {
           test: /\.s[ac]ss$/i,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                modules: {
-                  localIdentName: '[name]_[local]-[hash:base64:5]',
-                },
-              },
-            },
-            'sass-loader',
-          ],
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         },
       ],
     },
@@ -91,10 +78,7 @@ module.exports = (_, args) => {
         favicon: './favicon.svg',
       }),
       new CleanWebpackPlugin(),
-      new MiniCssExtractPlugin({
-        filename: 'css/[name].css',
-        chunkFilename: 'css/[name].css',
-      }),
+      new MiniCssExtractPlugin(),
       new ForkTsCheckerWebpackPlugin({
         typescript: {
           configFile: path.join(__dirname, 'tsconfig.json'),

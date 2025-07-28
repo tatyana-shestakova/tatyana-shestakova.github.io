@@ -13,8 +13,6 @@ const meta: Meta<typeof Header> = {
 
 export default meta;
 
-export const HeaderExample = {
-  args: {
-    nav: '',
-  },
+export const HeaderSwitchExample = {
+  args: {},
 };

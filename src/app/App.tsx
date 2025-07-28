@@ -1,16 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { createContext } from 'react';
 import './App.css';
+import { Header } from '../../src/stories/Header/Header';
+
+export const ThemeContext = createContext('orange');
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Текст писать тут
-        </p>
-      </header>
+      <Header />
     </div>
   );
 }

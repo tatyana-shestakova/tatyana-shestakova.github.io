@@ -1,4 +1,4 @@
-import { ShortCard, ShortCardProps } from '../../src/stories/ShortCard/ShortCard';
+import { ShortCard, ShortCardProps } from 'src/components/ShortCard/ShortCard';
 import React, { FunctionComponentElement } from 'react';
 import ReactDOM from 'react-dom/client';
 

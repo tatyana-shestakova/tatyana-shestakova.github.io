@@ -9,6 +9,7 @@ export interface I18nContextType {
     [key in Language]: {
       changeLang: string;
       changeTheme: string;
+      changeLoad: string;
     };
   };
 }
@@ -17,10 +18,12 @@ const i18n: I18nContextType['i18n'] = {
   en: {
     changeLang: 'Change language',
     changeTheme: 'Change theme',
+    changeLoad: 'Automatic cards load',
   },
   ru: {
     changeLang: 'Сменить язык',
     changeTheme: 'Сменить тему',
+    changeLoad: 'Автоматическа подгрузка товаров',
   },
 };
 

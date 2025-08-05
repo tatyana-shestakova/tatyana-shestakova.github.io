@@ -4,7 +4,7 @@ import './shortcard.sass';
 
 import { Button } from '../Button/Button';
 
-interface ShortCardProps {
+export interface ShortCardProps {
   /**
    * Изображение товара
    */
@@ -14,6 +14,11 @@ interface ShortCardProps {
    * Цена
    */
   price?: number;
+
+  /**
+   * Id
+   */
+  id?: string;
 
   /**
    * Название товара

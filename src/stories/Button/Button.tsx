@@ -2,13 +2,29 @@ import React from 'react';
 
 import './button.sass';
 
-export type ButtonModeType = 'mint' | 'orange' | 'teal';
+export type ModeType = 'mint' | 'orange' | 'teal';
 
-interface ButtonProps {
+export interface ButtonProps {
   /**
    * Цвет кнопки
    */
-  mode: ButtonModeType;
+  mode: ModeType;
+  /**
+   * Заголовок
+   */
+  label: string;
+
+  /**
+   * Событие по клику на кнопку
+   */
+  onClick: () => void;
+}
+
+interface ButtonBasketProps extends ButtonProps {
+  /**
+   * Цвет кнопки
+   */
+  mode: ModeType;
 
   /**
    * Счетчик
@@ -31,7 +47,21 @@ interface ButtonProps {
   onIncrement: () => void;
 }
 
-export function Button({ mode = 'mint', label = 'В корзину', counter, onDecrease, onIncrement }: ButtonProps) {
+export function Button({ mode = 'mint', label = 'Кнопка', onClick }: ButtonProps) {
+  return (
+    <button type="button" className={['button', mode].join(' ')} onClick={onClick}>
+      {label}
+    </button>
+  );
+}
+
+export function ButtonBasket({
+  mode = 'mint',
+  label = 'В корзину',
+  counter,
+  onDecrease,
+  onIncrement,
+}: ButtonBasketProps) {
   return (
     <div className={['button', mode].join(' ')}>
       <div className={counter ? 'hidden' : 'showed'}>{label}</div>

@@ -1,10 +1,10 @@
 import type { Meta } from '@storybook/react';
 
-import { Button } from './Button';
+import { ButtonBasket } from './Button';
 
-const meta: Meta<typeof Button> = {
-  title: 'Example/Button',
-  component: Button,
+const meta: Meta<typeof ButtonBasket> = {
+  title: 'Example/ButtonBasket',
+  component: ButtonBasket,
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
@@ -13,6 +13,9 @@ const meta: Meta<typeof Button> = {
 
 export default meta;
 
-export const ButtonBasket = {
-  args: {},
+export const ButtonBasketExample = {
+  args: {
+    onIncrement: () => console.log('onIncrement'),
+    onDecrease: () => console.log('onDecrease'),
+  },
 };

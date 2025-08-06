@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './button.sass';
+import { Icon, IconProps } from '../Icon/Icon';
 
 export type ModeType = 'mint' | 'orange' | 'teal';
 
@@ -12,12 +13,17 @@ export interface ButtonProps {
   /**
    * Заголовок
    */
-  label: string;
+  label?: string;
 
   /**
    * Событие по клику на кнопку
    */
   onClick: () => void;
+
+  /**
+   * Иконка
+   */
+  icon?: IconProps;
 }
 
 interface ButtonBasketProps extends ButtonProps {
@@ -34,7 +40,7 @@ interface ButtonBasketProps extends ButtonProps {
   /**
    * Счетчик
    */
-  label: string;
+  label?: string;
 
   /**
    * Уменьшить количество товаров
@@ -47,9 +53,16 @@ interface ButtonBasketProps extends ButtonProps {
   onIncrement: () => void;
 }
 
-export function Button({ mode = 'mint', label = 'Кнопка', onClick }: ButtonProps) {
+export function Button({ mode = 'mint', label = 'Кнопка', onClick, ...props }: ButtonProps) {
+  const icon = props.icon ? (
+    <div className={['button-icon', mode].join(' ')} onClick={onClick}>
+      <Icon size={props.icon.size} src={props.icon.src} theme={props.icon.theme} />
+    </div>
+  ) : null;
+
   return (
     <button type="button" className={['button', mode].join(' ')} onClick={onClick}>
+      {icon}
       {label}
     </button>
   );

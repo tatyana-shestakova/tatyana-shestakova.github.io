@@ -32,7 +32,7 @@ function App() {
       <CardList
         buttonRef={elementRef}
         list={mockArray}
-        onClick={() => setMockArray([...mockArray, ...addRandomCards(6)])}
+        onClick={() => setMockArray((prev) => [...prev, ...addRandomCards(6)])}
       />
     </div>
   );

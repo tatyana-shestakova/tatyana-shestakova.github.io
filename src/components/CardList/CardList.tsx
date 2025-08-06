@@ -37,7 +37,6 @@ export function CardList({ list, onClick, buttonRef }: CardListProps) {
           />
         ))}
       </div>
-      <div className="cards newList"></div>
       <div ref={buttonRef} className="loading">
         <Button mode="teal" label="Показать ещё" onClick={onClick}></Button>
       </div>

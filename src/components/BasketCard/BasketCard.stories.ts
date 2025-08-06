@@ -19,5 +19,6 @@ export const BasketCardExample = {
     price: '2222',
     title: 'Товар 1',
     count: 10,
+    onClick: () => console.log('onClick'),
   },
 };

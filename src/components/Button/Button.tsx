@@ -53,16 +53,16 @@ interface ButtonBasketProps extends ButtonProps {
   onIncrement: () => void;
 }
 
-export function Button({ mode = 'mint', label = 'Кнопка', onClick, ...props }: ButtonProps) {
-  const icon = props.icon ? (
+export function Button({ mode = 'mint', label = 'Кнопка', onClick, icon }: ButtonProps) {
+  const currentIcon = icon ? (
     <div className={['button-icon', mode].join(' ')} onClick={onClick}>
-      <Icon size={props.icon.size} src={props.icon.src} theme={props.icon.theme} />
+      <Icon size={icon.size} src={icon.src} theme={icon.theme} />
     </div>
   ) : null;
 
   return (
     <button type="button" className={['button', mode].join(' ')} onClick={onClick}>
-      {icon}
+      {currentIcon}
       {label}
     </button>
   );
@@ -75,20 +75,15 @@ export function ButtonBasket({
   onDecrease,
   onIncrement,
 }: ButtonBasketProps) {
-  return (
-    <div className={['button', mode].join(' ')}>
-      <div className={counter ? 'hidden' : 'showed'}>{label}</div>
-      <div className={counter ? 'showed' : 'hidden'}>
-        <div className="buttons">
-          <button type="button" className="controls" onClick={onDecrease}>
-            -
-          </button>
-          <input className="counter" value={counter} disabled={true}></input>
-          <button type="button" className="controls" onClick={onIncrement}>
-            +
-          </button>
-        </div>
-      </div>
+  const showedButtons = !counter ? (
+    <Button mode={mode} onClick={() => console.log('onClick')} label={label} />
+  ) : (
+    <div className="buttons">
+      <Button mode={mode} onClick={() => onDecrease()} label={'-'} />
+      <input className="counter" value={counter} disabled={true}></input>
+      <Button mode={mode} onClick={() => onIncrement()} label={'+'} />
     </div>
   );
+
+  return <div className={['button', mode].join(' ')}>{showedButtons}</div>;
 }

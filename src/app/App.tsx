@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, useState } from 'react';
+import React, { createContext, useCallback, useContext, useRef, useState } from 'react';
 import './App.css';
 import { Header } from '../../src/components/Header/Header';
 import { CardList } from '../../src/components/CardList/CardList';
@@ -16,6 +16,10 @@ function App() {
 
   const [mockArray, setMockArray] = useState(mockList);
 
+  const handleSetMockArray = useCallback(() => {
+    setMockArray((prev) => [...prev, ...addRandomCards(6)]);
+  }, []);
+
   const [automaticLoad, setLoad] = useState(false);
 
   const isElementOnScreen = useOnScreen(elementRef, !automaticLoad);
@@ -29,11 +33,7 @@ function App() {
       <Header>
         <Toggle label={i18n[language].changeLoad} onClick={() => setLoad(!automaticLoad)} />
       </Header>
-      <CardList
-        buttonRef={elementRef}
-        list={mockArray}
-        onClick={() => setMockArray((prev) => [...prev, ...addRandomCards(6)])}
-      />
+      <CardList buttonRef={elementRef} list={mockArray} onClick={handleSetMockArray} />
     </div>
   );
 }

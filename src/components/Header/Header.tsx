@@ -44,7 +44,7 @@ export function Header({ ...props }: HeaderProps) {
     <div className={['header', theme].join(' ')}>
       {nav}
       <div className="logo">
-        <Logo theme={theme}></Logo>
+        <Logo theme={theme} />
       </div>
       <div className="lang-switcher">
         <Toggle label={i18n[language].changeLang} onClick={() => setLanguage(language === 'en' ? 'ru' : 'en')} />

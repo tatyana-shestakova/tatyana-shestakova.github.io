@@ -34,12 +34,19 @@ export interface ShortCardProps {
    * Клик на кнопку
    */
   onClick: () => void;
+
+  /**
+   * Клик на название
+   */
+  onClickTitle?: () => void;
 }
 
-export function ShortCard({ image = '', price, title, description, onClick }: ShortCardProps) {
+export function ShortCard({ image = '', price, title, description, onClick, onClickTitle }: ShortCardProps) {
   return (
     <div className="short-card">
-      <div className="card-title">{title}</div>
+      <div className="card-title" onClick={onClickTitle}>
+        {title}
+      </div>
       <img className="card-image" src={image} alt=""></img>
       <div className="card-description">{description}</div>
       <div className="card-price">{price} ₽</div>

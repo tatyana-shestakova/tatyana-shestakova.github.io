@@ -2,7 +2,6 @@ import React from 'react';
 
 import './modal.sass';
 import { createPortal } from 'react-dom';
-import { Resizer } from '../Resizer/Resizer';
 
 interface ModalProps {
   /**
@@ -21,10 +20,10 @@ interface ModalProps {
   onClose: () => void;
 }
 
-export function Modal({ visible, onClose, ...props }: ModalProps) {
-  const resizer = (
-    <Resizer initialHeight={400} initialWidth={600} maxHeight={500} maxWidth={800}>
-      {() => (
+export function Modal({ visible = true, onClose, ...props }: ModalProps) {
+  if (visible) {
+    return createPortal(
+      <div className={['background-shadow', visible ? '' : 'hidden'].join(' ')}>
         <div className="modal">
           <div className="icon-close" onClick={onClose}>
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 50 50">
@@ -33,13 +32,7 @@ export function Modal({ visible, onClose, ...props }: ModalProps) {
           </div>
           {props.children}
         </div>
-      )}
-    </Resizer>
-  );
-
-  if (visible) {
-    return createPortal(
-      <div className={['background-shadow', visible ? '' : 'hidden'].join(' ')}>{resizer}</div>,
+      </div>,
       document.body
     );
   } else {

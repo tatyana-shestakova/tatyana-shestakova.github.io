@@ -6,8 +6,10 @@ import { Toggle } from '../Toggle/Toggle';
 import { I18nContext } from '../../providers/LanguageProvider';
 import { useTheme } from '../../providers/ThemeProvider';
 import { Button } from '../Button/Button';
-import { IconProps } from 'src/components/Icon/Icon';
-import { Tip } from 'src/components/Tip/Tip';
+import { IconProps } from '../Icon/Icon';
+import { Tip } from '../Tip/Tip';
+import { Modal } from '../Modal/Modal';
+import { UserForm } from '../Forms/UserForm';
 
 type ItemNavType = {
   label: string;
@@ -39,13 +41,20 @@ export function Header({ ...props }: HeaderProps) {
     size: 'm',
   };
 
+  const profiledModalSize = {
+    initialHeight: 450,
+    initialWidth: 550,
+    maxHeight: 450,
+    maxWidth: 550,
+  };
+
   const { language, i18n, setLanguage } = useContext(I18nContext);
 
   const { theme, toggleTheme } = useTheme();
 
   const [openedBasket, setOpenedBasket] = useState(true);
 
-  const [openedProfile, setopenedProfile] = useState(true);
+  const [openedProfile, setOpenedProfile] = useState(true);
 
   const nav =
     props.nav && props.nav.length ? (
@@ -86,12 +95,15 @@ export function Header({ ...props }: HeaderProps) {
               label=""
               mode={theme === 'orange' ? 'orange' : 'teal'}
               size="content"
-              onClick={() => setOpenedBasket(true)}
+              onClick={() => setOpenedProfile(true)}
             />
           </div>
         </Tip>
         {props.children}
       </div>
+      <Modal visible={openedProfile} size={profiledModalSize} onClose={() => setOpenedProfile(false)}>
+        <UserForm />
+      </Modal>
     </div>
   );
 }

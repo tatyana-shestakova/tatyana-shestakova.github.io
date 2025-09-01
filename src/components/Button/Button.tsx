@@ -1,7 +1,6 @@
-import React from 'react';
-
 import './button.sass';
 import { Icon, IconProps } from '../Icon/Icon';
+import React from 'react';
 
 export type ModeType = 'mint' | 'orange' | 'teal';
 
@@ -18,7 +17,7 @@ export interface ButtonProps {
   /**
    * Событие по клику на кнопку
    */
-  onClick: () => void;
+  onClick?: () => void;
 
   /**
    * Иконка
@@ -29,36 +28,14 @@ export interface ButtonProps {
    * Размер кнопки
    */
   size?: 'fix' | 'content';
+
+  /**
+   * Тип кнопки
+   */
+  type?: 'submit' | 'button' | 'reset';
 }
 
-interface ButtonBasketProps extends ButtonProps {
-  /**
-   * Цвет кнопки
-   */
-  mode: ModeType;
-
-  /**
-   * Счетчик
-   */
-  counter: number;
-
-  /**
-   * Счетчик
-   */
-  label?: string;
-
-  /**
-   * Уменьшить количество товаров
-   */
-  onDecrease: () => void;
-
-  /**
-   * Увеличить количество товаров
-   */
-  onIncrement: () => void;
-}
-
-export function Button({ mode = 'mint', label = 'Кнопка', onClick, icon, size = 'fix' }: ButtonProps) {
+export function Button({ mode = 'mint', label = 'Кнопка', onClick, icon, size = 'fix', type = 'button' }: ButtonProps) {
   const currentIcon = icon ? (
     <div className={['button-icon', mode].join(' ')}>
       <Icon size={icon.size} src={icon.src} theme={icon.theme} />
@@ -66,29 +43,9 @@ export function Button({ mode = 'mint', label = 'Кнопка', onClick, icon, s
   ) : null;
 
   return (
-    <button type="button" className={['button', size, mode].join(' ')} onClick={onClick}>
+    <button type={type} className={['button', size, mode].join(' ')} onClick={onClick}>
       {currentIcon}
       {label}
     </button>
   );
-}
-
-export function ButtonBasket({
-  mode = 'mint',
-  label = 'В корзину',
-  counter,
-  onDecrease,
-  onIncrement,
-}: ButtonBasketProps) {
-  const showedButtons = !counter ? (
-    <Button mode={mode} onClick={() => console.log('onClick')} label={label} />
-  ) : (
-    <div className="buttons">
-      <Button mode={mode} onClick={() => onDecrease()} label={'-'} />
-      <input className="counter" value={counter} disabled={true}></input>
-      <Button mode={mode} onClick={() => onIncrement()} label={'+'} />
-    </div>
-  );
-
-  return <div className={['button', mode].join(' ')}>{showedButtons}</div>;
 }

@@ -13,6 +13,7 @@ export interface I18nContextType {
       offers: string;
       filter: string;
       basket: string;
+      profile: string;
     };
   };
 }
@@ -25,6 +26,7 @@ const i18n: I18nContextType['i18n'] = {
     offers: 'Best offers',
     filter: 'Filter',
     basket: 'Basket',
+    profile: 'Profile',
   },
   ru: {
     changeLang: 'Сменить язык',
@@ -33,6 +35,7 @@ const i18n: I18nContextType['i18n'] = {
     offers: 'Лучшие предложения',
     filter: 'Фильтр',
     basket: 'Корзина',
+    profile: 'Профиль',
   },
 };
 

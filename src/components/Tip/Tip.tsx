@@ -108,7 +108,7 @@ export const Tip: FC<TipProps> = ({ className, children, title, container = docu
     timeoutId.current = window?.setTimeout(() => {
       dispatch({ type: TipType.invisible });
       setTimeout(() => dispatch({ type: TipType.unmount }), 0);
-    }, 1000);
+    }, 100);
   };
 
   const parent = React.createElement(

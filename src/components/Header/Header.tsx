@@ -27,8 +27,14 @@ interface HeaderProps {
 }
 
 export function Header({ ...props }: HeaderProps) {
-  const iconParam: IconProps = {
+  const iconBasketParam: IconProps = {
     src: 'https://cdn-icons-png.flaticon.com/512/711/711897.png',
+    theme: 'ghost',
+    size: 'm',
+  };
+
+  const iconProfileParam: IconProps = {
+    src: 'https://images.icon-icons.com/2574/PNG/512/profile_picture_user_icon_153847.png',
     theme: 'ghost',
     size: 'm',
   };
@@ -38,6 +44,8 @@ export function Header({ ...props }: HeaderProps) {
   const { theme, toggleTheme } = useTheme();
 
   const [openedBasket, setOpenedBasket] = useState(true);
+
+  const [openedProfile, setopenedProfile] = useState(true);
 
   const nav =
     props.nav && props.nav.length ? (
@@ -63,7 +71,18 @@ export function Header({ ...props }: HeaderProps) {
         <Tip className="absolute-tip" title={i18n[language].basket}>
           <div>
             <Button
-              icon={iconParam}
+              icon={iconBasketParam}
+              label=""
+              mode={theme === 'orange' ? 'orange' : 'teal'}
+              size="content"
+              onClick={() => setOpenedBasket(true)}
+            />
+          </div>
+        </Tip>
+        <Tip className="absolute-tip" title={i18n[language].profile}>
+          <div>
+            <Button
+              icon={iconProfileParam}
               label=""
               mode={theme === 'orange' ? 'orange' : 'teal'}
               size="content"

@@ -27,7 +27,7 @@ export function Toggle({ onClick, className, ...props }: ToggleProps) {
       </label>
       <label className="switch">
         <input type="checkbox" id="username" onClick={onClick} />
-        <span className="slider round"></span>
+        <span className="slider-switch round"></span>
       </label>
     </div>
   );

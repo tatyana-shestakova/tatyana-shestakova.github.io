@@ -9,7 +9,7 @@ export interface ButtonProps {
   /**
    * Цвет кнопки
    */
-  mode: ModeType;
+  mode: ModeType | 'outline';
   /**
    * Заголовок
    */
@@ -55,7 +55,7 @@ interface ButtonBasketProps extends ButtonProps {
 
 export function Button({ mode = 'mint', label = 'Кнопка', onClick, icon }: ButtonProps) {
   const currentIcon = icon ? (
-    <div className={['button-icon', mode].join(' ')} onClick={onClick}>
+    <div className={['button-icon', mode].join(' ')}>
       <Icon size={icon.size} src={icon.src} theme={icon.theme} />
     </div>
   ) : null;

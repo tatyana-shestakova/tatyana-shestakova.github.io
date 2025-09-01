@@ -14,7 +14,7 @@ export interface IconProps {
   /**
    * Тема иконки
    */
-  theme: ModeType;
+  theme: ModeType | 'ghost';
 
   /**
    * Иконка

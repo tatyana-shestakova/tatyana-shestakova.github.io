@@ -14,7 +14,13 @@ export const addRandomCards = (count: number, max?: number): ShortCardProps[] =>
       title: `Товар ${randomIndex}`,
       description: 'Contrary to popular belief, Lorem Ipsum is not simply random',
       id: `${randomIndex}`,
-      onClick: () => console.log(randomIndex),
+      onClick: () => ({
+        image: 'https://placeholder.apptor.studio/150/150/product1.png',
+        price: randomIndex,
+        title: `Товар ${randomIndex}`,
+        description: 'Contrary to popular belief, Lorem Ipsum is not simply random',
+        id: `${randomIndex}`,
+      }),
     };
     randomList.push(randomCard);
   }

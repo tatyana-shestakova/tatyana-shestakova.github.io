@@ -4,7 +4,7 @@ import './fullcard.sass';
 
 import { Button } from '../Button/Button';
 
-interface FullCardProps {
+export interface FullCardProps {
   /**
    * Изображение товара
    */

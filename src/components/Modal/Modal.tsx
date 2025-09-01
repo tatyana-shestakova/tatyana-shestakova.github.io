@@ -2,6 +2,7 @@ import React from 'react';
 
 import './modal.sass';
 import { createPortal } from 'react-dom';
+import { Resizer, ResizerProps } from '../Resizer/Resizer';
 
 interface ModalProps {
   /**
@@ -18,12 +19,22 @@ interface ModalProps {
    * Закрыть модальное окно
    */
   onClose: () => void;
+
+  /**
+   * Размермодального окна
+   */
+  size?: Partial<ResizerProps>;
 }
 
-export function Modal({ visible = true, onClose, ...props }: ModalProps) {
-  if (visible) {
-    return createPortal(
-      <div className={['background-shadow', visible ? '' : 'hidden'].join(' ')}>
+export function Modal({ visible, onClose, size, ...props }: ModalProps) {
+  const resizer = (
+    <Resizer
+      initialHeight={size?.initialHeight || 400}
+      initialWidth={size?.initialWidth || 600}
+      maxHeight={size?.maxHeight || 500}
+      maxWidth={size?.maxWidth || 800}
+    >
+      {() => (
         <div className="modal">
           <div className="icon-close" onClick={onClose}>
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 50 50">
@@ -32,7 +43,13 @@ export function Modal({ visible = true, onClose, ...props }: ModalProps) {
           </div>
           {props.children}
         </div>
-      </div>,
+      )}
+    </Resizer>
+  );
+
+  if (visible) {
+    return createPortal(
+      <div className={['background-shadow', visible ? '' : 'hidden'].join(' ')}>{resizer}</div>,
       document.body
     );
   } else {

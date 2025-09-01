@@ -24,6 +24,11 @@ export interface ButtonProps {
    * Иконка
    */
   icon?: IconProps;
+
+  /**
+   * Размер кнопки
+   */
+  size?: 'fix' | 'content';
 }
 
 interface ButtonBasketProps extends ButtonProps {
@@ -53,7 +58,7 @@ interface ButtonBasketProps extends ButtonProps {
   onIncrement: () => void;
 }
 
-export function Button({ mode = 'mint', label = 'Кнопка', onClick, icon }: ButtonProps) {
+export function Button({ mode = 'mint', label = 'Кнопка', onClick, icon, size = 'fix' }: ButtonProps) {
   const currentIcon = icon ? (
     <div className={['button-icon', mode].join(' ')}>
       <Icon size={icon.size} src={icon.src} theme={icon.theme} />
@@ -61,7 +66,7 @@ export function Button({ mode = 'mint', label = 'Кнопка', onClick, icon }:
   ) : null;
 
   return (
-    <button type="button" className={['button', mode].join(' ')} onClick={onClick}>
+    <button type="button" className={['button', size, mode].join(' ')} onClick={onClick}>
       {currentIcon}
       {label}
     </button>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import './modal.sass';
 import { createPortal } from 'react-dom';
-import { Resizer } from '../Resizer/Resizer';
+import { Resizer, ResizerProps } from '../Resizer/Resizer';
 
 interface ModalProps {
   /**
@@ -19,11 +19,21 @@ interface ModalProps {
    * Закрыть модальное окно
    */
   onClose: () => void;
+
+  /**
+   * Размермодального окна
+   */
+  size?: Partial<ResizerProps>;
 }
 
-export function Modal({ visible, onClose, ...props }: ModalProps) {
+export function Modal({ visible, onClose, size, ...props }: ModalProps) {
   const resizer = (
-    <Resizer initialHeight={400} initialWidth={600} maxHeight={500} maxWidth={800}>
+    <Resizer
+      initialHeight={size?.initialHeight || 400}
+      initialWidth={size?.initialWidth || 600}
+      maxHeight={size?.maxHeight || 500}
+      maxWidth={size?.maxWidth || 800}
+    >
       {() => (
         <div className="modal">
           <div className="icon-close" onClick={onClose}>

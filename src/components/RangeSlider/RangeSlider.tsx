@@ -1,5 +1,5 @@
 import type { RangeSliderProps } from './RangeSlider.types';
-import React, { type ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import React, { type ChangeEvent, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import './RangeSlider.sass';
 
@@ -12,9 +12,16 @@ export function RangeSlider({ min, max, step, onChange }: RangeSliderProps) {
   const [maxValue, setMaxValue] = useState(max);
 
   useEffect(() => {
-    if (!range.current) {
-      return;
+    if (min >= max) {
+      console.error('RangeSlider: min must be less than max');
     }
+    if (step <= 0) {
+      console.error('RangeSlider: step must be greater than 0');
+    }
+  }, [min, max, step]);
+
+  useLayoutEffect(() => {
+    if (!range.current) return;
     const minPercent = getPercent(minValue);
     const maxPercent = getPercent(maxValue);
     range.current.style.left = `${minPercent}%`;

@@ -10,6 +10,10 @@ export interface I18nContextType {
       changeLang: string;
       changeTheme: string;
       changeLoad: string;
+      offers: string;
+      filter: string;
+      basket: string;
+      profile: string;
     };
   };
 }
@@ -19,11 +23,19 @@ const i18n: I18nContextType['i18n'] = {
     changeLang: 'Change language',
     changeTheme: 'Change theme',
     changeLoad: 'Automatic cards load',
+    offers: 'Best offers',
+    filter: 'Filter',
+    basket: 'Basket',
+    profile: 'Profile',
   },
   ru: {
     changeLang: 'Сменить язык',
     changeTheme: 'Сменить тему',
     changeLoad: 'Автоматическа подгрузка товаров',
+    offers: 'Лучшие предложения',
+    filter: 'Фильтр',
+    basket: 'Корзина',
+    profile: 'Профиль',
   },
 };
 

@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useContext, useState } from 'react';
-import { ModeType } from 'src/components/Button/Button';
+import { ModeType } from '../components/Button/Button';
 
 interface ThemeContextType {
   theme: ModeType;

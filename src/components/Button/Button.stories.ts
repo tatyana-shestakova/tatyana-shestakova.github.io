@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react';
 
-import { ButtonBasket } from './Button';
+import { ButtonBasket } from './ButtonBasket';
 
 const meta: Meta<typeof ButtonBasket> = {
   title: 'Example/ButtonBasket',
@@ -13,9 +13,4 @@ const meta: Meta<typeof ButtonBasket> = {
 
 export default meta;
 
-export const ButtonBasketExample = {
-  args: {
-    onIncrement: () => console.log('onIncrement'),
-    onDecrease: () => console.log('onDecrease'),
-  },
-};
+export const ButtonBasketExample = {};

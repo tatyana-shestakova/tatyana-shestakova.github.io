@@ -6,6 +6,7 @@ import { Button } from '../Button/Button';
 import { ShortCard, ShortCardProps } from '../ShortCard/ShortCard';
 import { Modal } from '../Modal/Modal';
 import { FullCard, FullCardProps } from '../FullCard/FullCard';
+import { ItemForm } from '../Forms/ItemForm';
 
 interface CardListProps {
   /**
@@ -30,7 +31,22 @@ interface CardListProps {
 }
 
 export const CardList = memo(function CardList({ list, onClick, buttonRef, children }: CardListProps) {
-  const [opened, openModal] = useState(false);
+  const [openedModal, openModal] = useState(false);
+  const [openedForm, openForm] = useState(false);
+
+  const shortModalSize = {
+    initialHeight: 450,
+    initialWidth: 380,
+    maxHeight: 450,
+    maxWidth: 380,
+  };
+
+  const cardModalSize = {
+    initialHeight: 500,
+    initialWidth: 800,
+    maxHeight: 500,
+    maxWidth: 800,
+  };
 
   const [card, setCard] = useState<FullCardProps>({
     image: 'https://placeholder.apptor.studio/150/150/product1.png',
@@ -44,6 +60,21 @@ export const CardList = memo(function CardList({ list, onClick, buttonRef, child
     onClick: () => console.log('Товар 2'),
   });
 
+  const [formCard, setFormCard] = useState<ShortCardProps>({
+    image: 'https://placeholder.apptor.studio/150/150/product1.png',
+    price: 1,
+    title: `Товар 1`,
+    description: 'Contrary to popular belief, Lorem Ipsum is not simply random',
+    id: '1',
+    onClick: () => ({
+      image: 'https://placeholder.apptor.studio/150/150/product1.png',
+      price: 1,
+      title: `Товар 1`,
+      description: 'Contrary to popular belief, Lorem Ipsum is not simply random',
+      id: `1`,
+    }),
+  });
+
   const items = useMemo(
     () =>
       list.map((item) => (
@@ -53,7 +84,17 @@ export const CardList = memo(function CardList({ list, onClick, buttonRef, child
           description={item.description}
           image={item.image}
           price={item.price}
-          onClick={() => console.log(item.title)}
+          onClick={() => {
+            setFormCard({
+              image: item.image,
+              price: item.price,
+              title: item.title,
+              description: item.description,
+              id: item.id,
+              onClick: () => console.log(item.title),
+            });
+            openForm(true);
+          }}
           onClickTitle={() => {
             setCard({
               image: item.image,
@@ -75,17 +116,13 @@ export const CardList = memo(function CardList({ list, onClick, buttonRef, child
       {children}
       <div className="cards">{items}</div>
       <div ref={buttonRef} className="loading">
-        <Button mode="teal" label="Показать ещё" onClick={onClick}></Button>
+        <Button mode="teal" label="Показать ещё" onClick={onClick} />
       </div>
-      <Modal visible={opened} onClose={() => openModal(false)}>
-        <FullCard
-          category={card.category}
-          image={card.image}
-          price={card.price}
-          title={card.title}
-          description={card.description}
-          onClick={card.onClick}
-        />
+      <Modal visible={openedModal} size={cardModalSize} onClose={() => openModal(false)}>
+        <FullCard {...card} />
+      </Modal>
+      <Modal visible={openedForm} size={shortModalSize} onClose={() => openForm(false)}>
+        <ItemForm {...formCard} />
       </Modal>
     </div>
   );

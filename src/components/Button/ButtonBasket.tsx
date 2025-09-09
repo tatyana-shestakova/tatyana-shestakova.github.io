@@ -24,14 +24,14 @@ interface ButtonBasketProps extends ButtonProps {
   /**
    * Отправить форму
    */
-  onSubmit?: () => void;
+  onClick: () => void;
 }
 
 export interface ButtonBasketFormProps {
   counter: number;
 }
 
-export function ButtonBasket({ mode = 'mint', onSubmit }: ButtonBasketProps) {
+export function ButtonBasket({ mode = 'mint', onClick }: ButtonBasketProps) {
   const [input, setInput] = useState(0);
 
   const {
@@ -71,7 +71,7 @@ export function ButtonBasket({ mode = 'mint', onSubmit }: ButtonBasketProps) {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="form" onSubmit={handleSubmit(onClick)}>
       <div className={['button', mode].join(' ')}>
         <div className="buttons">
           <Button mode={mode} onClick={() => onDecrease()} label={'-'} />
@@ -88,7 +88,7 @@ export function ButtonBasket({ mode = 'mint', onSubmit }: ButtonBasketProps) {
           <Button mode={mode} onClick={() => onIncrement()} label={'+'} />
         </div>
       </div>
-      <Button mode="mint" label="Добавить" type="submit" />
+      <Button mode="mint" label="Добавить" type="submit" onClick={() => console.log('submit')} />
       {errors.counter && <p className="typography xs error error-label error top-100">{errors.counter.message}</p>}
     </form>
   );

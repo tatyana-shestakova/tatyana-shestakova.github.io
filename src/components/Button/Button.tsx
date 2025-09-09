@@ -17,7 +17,7 @@ export interface ButtonProps {
   /**
    * Событие по клику на кнопку
    */
-  onClick?: () => void;
+  onClick: () => void;
 
   /**
    * Иконка

@@ -5,12 +5,11 @@ import '../../styles/styles.sass';
 import { useForm } from 'react-hook-form';
 import { clsx } from 'clsx';
 import { Button } from '../Button/Button';
+import { z } from 'zod';
+import { profileFormSchema } from '../../composable/profileFormSchema';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-interface ProfileFormProps {
-  name?: string;
-  email: string;
-  password: string;
-}
+type FormSchema = z.infer<typeof profileFormSchema>;
 
 export function UserForm() {
   const {
@@ -19,16 +18,16 @@ export function UserForm() {
     formState: { errors },
     resetField,
     reset,
-  } = useForm<ProfileFormProps>();
+  } = useForm<FormSchema>({ resolver: zodResolver(profileFormSchema) });
 
   const [newUser, setNewUser] = useState(false);
 
-  const onSubmit = (values: ProfileFormProps) => {
+  const onSubmit = (values: FormSchema) => {
     console.log('Данные из формы ', values);
     reset({ name: '', email: '', password: '' });
   };
 
-  const showErrors = () => {
+  const resetErrors = () => {
     if (errors.name) {
       resetField('name');
     }
@@ -38,6 +37,11 @@ export function UserForm() {
     if (errors.password) {
       resetField('password');
     }
+  };
+
+  const changeForm = () => {
+    reset({ name: '', email: '', password: '' });
+    setNewUser(true);
   };
 
   const title = newUser ? 'Зарегистрируйте новый личный кабинет' : 'Войти в личный кабинет';
@@ -54,17 +58,7 @@ export function UserForm() {
         type="text"
         placeholder="Введите своё имя"
         className={clsx('input', { 'input-error': errors.name })}
-        {...register('name', {
-          required: 'Поле обязательно для заполнения',
-          minLength: {
-            value: 2,
-            message: 'Поле должно содержать не менее 2 символов',
-          },
-          maxLength: {
-            value: 50,
-            message: 'Поле должно содержать не более 50 символов',
-          },
-        })}
+        {...register('name')}
       />
       {errors.name && <p className="typography xs error error-label bottom">{errors.name.message}</p>}
     </div>
@@ -75,7 +69,7 @@ export function UserForm() {
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="typography m">
           Впервые? Зарегистрируйтесь{' '}
-          <span className="link" onClick={() => setNewUser(true)}>
+          <span className="link" onClick={() => changeForm()}>
             здесь
           </span>
         </div>
@@ -90,13 +84,7 @@ export function UserForm() {
             id="email"
             placeholder="Введите свой email"
             className={clsx('input', { 'input-error': errors.email })}
-            {...register('email', {
-              required: 'Поле обязательно для заполнения',
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: 'Пожалуйста, введите корректный адрес почты',
-              },
-            })}
+            {...register('email')}
           />
           {errors.email && <p className="typography xs error error-label bottom">{errors.email.message}</p>}
         </div>
@@ -110,20 +98,13 @@ export function UserForm() {
             id="password"
             placeholder="Введите свой email"
             className={clsx('input', { 'input-error': errors.password })}
-            {...register('password', {
-              required: 'Поле обязательно для заполнения',
-              pattern: {
-                value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
-                message:
-                  'Пароль должен содержать хоть одну цифру, одну строчную букву, одну заглавную букву, один специальный символ, без пробела и должен быть длиной от 8 символов.',
-              },
-            })}
+            {...register('password')}
           />
           {errors.password && <p className="typography xs error error-label bottom">{errors.password.message}</p>}
         </div>
 
         <div className="button-submit">
-          <Button mode="teal" type="submit" label={buttonTitle} onClick={showErrors} />
+          <Button mode="teal" type="submit" label={buttonTitle} onClick={resetErrors} />
         </div>
       </form>
     </div>

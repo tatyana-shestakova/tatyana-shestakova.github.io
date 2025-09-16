@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useContext, useRef, useState } from 'react';
 import { CardList } from '../../components/CardList/CardList';
 import { useOnScreen } from '../../components/LazyLoad/lazyload';
 import { addRandomCards } from '../../composable/addRandomCards';
@@ -8,6 +8,7 @@ import { Icon, IconProps } from 'src/components/Icon/Icon';
 import { Collapse } from '../../components/Collapse/Collapse';
 import { Tip } from '../../components/Tip/Tip';
 import { RangeSlider } from 'src/components/RangeSlider/RangeSlider';
+import { I18nContext } from 'src/providers/LanguageProvider';
 
 interface MainCardListProps {
   /**
@@ -19,6 +20,8 @@ interface MainCardListProps {
 const newMockArray = [...addRandomCards(30)];
 
 export function MainCardList({ automaticLoad }: MainCardListProps) {
+  const { language, i18n } = useContext(I18nContext);
+
   const iconParam: IconProps = {
     src: 'https://images.icon-icons.com/1993/PNG/512/filter_filters_funnel_list_navigation_sort_sorting_icon_123212.png',
     theme: 'ghost',
@@ -54,9 +57,9 @@ export function MainCardList({ automaticLoad }: MainCardListProps) {
   return (
     <CardList buttonRef={elementRef} list={mockArray} onClick={handleSetMockArray}>
       <div className="container">
-        <div className="card-title typography xl bold">Лучшие предложения</div>
+        <div className="card-title typography xl bold">{i18n[language].offers}</div>
         <div className="icon-filter" onClick={() => openFilter()}>
-          <Tip className="absolute-tip" title="Фильтр">
+          <Tip className="absolute-tip" title={i18n[language].filter}>
             <div>
               <Icon size={iconParam.size} src={iconParam.src} theme={iconParam.theme} />
             </div>
